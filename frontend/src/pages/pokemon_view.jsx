@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
-
-
+import { Pokedex } from "pokeapi-js-wrapper";
 
 const PokeView = () => {
-    
-    const [pokedata, setPokeData] = useState()
+
+    const pokedex = new Pokedex()
+    const [pokemon, setPokemon] = useState('');
 
     useEffect(()=>{
-        const fetchInfo = async () => {
-            try {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
-                setPokeData( await response.json());
-                console.log(pokedata)
-
-            } catch (error){
-                console.error('Error with api call!', error)
-            };
+        async function fetchPoke () {
+            try{
+                const pokemon_data = await pokedex.getPokemonByName("pikachu")
+                setPokemon(pokemon_data)
+                }
+                catch(e){console.error(e)}
         };
-        fetchInfo();
+        fetchPoke()
     }, [])
-    //Logic
-    
+
+    console.log(pokemon)
+
     return ( 
     <>
-        <h1>This is the poke view page!!</h1>
-    </> );
+        {pokemon != '' && <div><h1>{pokemon.name}</h1>
+        <img className="" src={pokemon.sprites.other['official-artwork'].front_default} alt="Image Unavailable" />
+        <p>{pokemon.abilities.effect_entries}</p>
+        </div>}
+    </> 
+    );
 }
- 
+
 export default PokeView;
