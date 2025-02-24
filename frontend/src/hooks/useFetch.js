@@ -4,8 +4,7 @@ const useFetch = ((index) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [isError, setIsError] = useState(null);
-    const [body_style, setBodyStyle] = useState('justify-items-center desktop:w-2/6 rounded-3xl my-5')
-
+    
     useEffect(() => {
     
         fetch(`https://pokeapi.co/api/v2/pokemon/${index}`).then((res) => {

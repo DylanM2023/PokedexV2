@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        search_icon: "url('./assets/search_icon.jpg')"
+      }
+    },
   },
   plugins: [],
 }
