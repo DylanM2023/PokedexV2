@@ -7,10 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "fire": {
-          100:'#db3b3b',
-          500:'#f31f1f',
-        }
+        "ground-type": "#9d624d",
+        "dragon-type": "#6562a1"
       },
       backgroundImage:{
         search_icon: "url('./assets/search_icon.jpg')"
