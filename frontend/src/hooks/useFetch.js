@@ -29,4 +29,6 @@ const useFetch = ((index) => {
     return {data, isPending, isError}
 })
 
+// useFetch handles the post requests to pokeAPI by searching with the index value
+
 export default useFetch;

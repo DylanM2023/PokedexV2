@@ -7,13 +7,15 @@ const PokeView = () => {
     const [name, setName] = useState('')
     const {data, isPending, isError} = useFetch(index)
 
-    console.log(data)
+    console.log(isError)
 
     function fetchName (search) {
         if (search != ''){
             setIndex(search)
         }
     }
+
+    // fetchName sets the index to the name the user searches for. It ignores blank values
 
     function nextPokemon (index) {
 
@@ -26,11 +28,16 @@ const PokeView = () => {
         setIndex(new_index.toString())
     }
 
+    // next/prevPokemon convert the current index into an integer and change the value by +/- 1 this changes the view to the next or previous pokemon 
+
     return ( 
     <div className="rounded-xl justify-items-center">
         <h1 className="text-8xl text-center bg-zinc-800 text-slate-100 w-screen h-28">Pokédex</h1>
-        <input className="border-2 border-black my-5" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
-        <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
+        <div className="my-3">
+            <input className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
+            <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
+            {isError != null && <p className="text-red-500">{isError.toString()}, the pokemon may not exist?</p>}
+        </div>
             {isPending && <p>Loading...</p>}
             {data != null && <div>
                                 {data.types[0].type.name == 'fire' && 
