@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: "pokedexv2.onrender.com"
+    allowedHosts: ["pokedexv2.onrender.com"]
   }
 })
