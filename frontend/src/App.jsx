@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<PokeView/>} />
+        <Route path='/home' element={<PokeView/>} />
         <Route path='*' element={<div>404 No Page Found</div>}/>
       </Routes>
     </BrowserRouter>
