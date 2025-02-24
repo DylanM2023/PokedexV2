@@ -7,6 +7,9 @@ const useFetch = ((index) => {
     
     useEffect(() => {
     
+        setIsPending(true)
+        setIsError(null)
+
         fetch(`https://pokeapi.co/api/v2/pokemon/${index}`).then((res) => {
             if(!res.ok){
                 throw Error("Could not fetch data")
@@ -17,7 +20,7 @@ const useFetch = ((index) => {
             setTimeout(() => {
             setData(data);
             setIsPending(false)
-            }, );
+            }, 150);
         })
         .catch((err) => {
         setIsPending(false)

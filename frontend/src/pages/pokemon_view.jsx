@@ -21,11 +21,22 @@ const PokeView = () => {
 
         const new_index = parseInt(index) + 1
         setIndex(new_index.toString())
+
     }
 
     function prevPokemon (index) {
         const new_index = parseInt(index) - 1
         setIndex(new_index.toString())
+    }
+
+    function setStyle(type) {
+        let styleCard = "rounded-2xl border-2 border-black"
+        switch (type) {
+            case "fire":
+                return styleCard + ' bg-fire-500';
+            default:
+                return styleCard + ' bg-slate-500';
+        }
     }
 
     // next/prevPokemon convert the current index into an integer and change the value by +/- 1 this changes the view to the next or previous pokemon 
@@ -36,18 +47,17 @@ const PokeView = () => {
         <div className="my-3">
             <input className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
             <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
-            {isError != null && <p className="text-red-500">{isError.toString()}, the pokemon may not exist?</p>}
+            {isError && <p className="text-red-500">{isError.toString()}, the pokemon may not exist?</p>}
         </div>
-            {isPending && <p>Loading...</p>}
-            {data != null && <div>
+        {data && <div>
                                 {data.types[0].type.name == 'fire' && 
-                                    <div className="bg-red-500 rounded-2xl border-2 border-black">
+                                    <div className={setStyle(data.types[0].type.name)} >
                                         <div className="flex">
                                             <h1 className="flex flex-grow text-4xl m-5">{String(data.name).charAt(0).toUpperCase() + String(data.name).slice(1)}</h1>
-                                            <p className="border-2 border-black w-1/6 text-center text-2xl m-5 rounded-xl bg-red-300 ">{data.id}</p>
+                                            <p className="border-2 border-black w-1/6 text-center text-2xl m-5 rounded-xl bg-red-300">{data.id}</p>
                                         </div>
-                                        <img className="bg-red-500" src={data.sprites.other['official-artwork'].front_default} alt="Image Unavailable" />
-                                        <p className="bg-red-300 text-2xl text-center font-bold rounded-xl border-2 border-black">{String(data.types[0].type.name).charAt(0).toUpperCase() + String(data.types[0].type.name).slice(1)}</p>
+                                        <img src={data.sprites.other['official-artwork'].front_default} alt="Image Unavailable"/>
+                                        <p className="bg-gray-100 bg-opacity-25 text-2xl text-center font-bold rounded-xl border-2 border-black">{String(data.types[0].type.name).charAt(0).toUpperCase() + String(data.types[0].type.name).slice(1)}</p>
                                     </div>}
                                 {data.types[0].type.name == 'grass' && 
                                     <div className="bg-green-500 rounded-2xl  border-2 border-black">
@@ -199,6 +209,7 @@ const PokeView = () => {
                 <button className="border-2 w-40 h-20 m-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
                 <button className="border-2 w-40 h-20 m-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
             </div>
+            {isPending && <p>Loading...</p>}
         </div>
     );
 }
