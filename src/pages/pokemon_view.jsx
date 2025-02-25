@@ -7,15 +7,18 @@ const PokeView = () => {
     const [name, setName] = useState('')
     const {data, isPending, isError} = useFetch(index)
 
-    console.log(data)
-
     function fetchName (search) {
         if (search != ''){
             setIndex(search);
             document.getElementById("pokemon_search_box").value = ""
         }
     }
+
     // fetchName sets the index to the name the user searches for. It ignores blank values
+
+    function randomPokemon (max) {
+        return Math.floor(Math.random() * max)
+    };
 
     function nextPokemon (index) {
         const new_index = parseInt(index) + 1
@@ -136,7 +139,7 @@ const PokeView = () => {
             }
             <div className="flex gap-10">
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
-                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" >Random</button>
+                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{fetchName(randomPokemon(1025))}}>Random</button>
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
             </div>
         </div>
