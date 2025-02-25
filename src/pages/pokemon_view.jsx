@@ -9,7 +9,8 @@ const PokeView = () => {
 
     function fetchName (search) {
         if (search != ''){
-            setIndex(search)
+            setIndex(search);
+            document.getElementById("pokemon_search_box").value = ""
         }
     }
 
@@ -97,7 +98,7 @@ const PokeView = () => {
             case "dark":
                 return styleCard + ' bg-black text-white border-white'
             case "ghost":
-                return styleCard + ' bg-violet-600'
+                return styleCard + ' bg-violet-500'
             case "flying":
                 return styleCard + ' bg-teal-300'
             default:
@@ -109,12 +110,12 @@ const PokeView = () => {
 
     return ( 
     <div className="rounded-xl justify-items-center">
-        <h1 className="text-8xl text-center bg-zinc-800 text-slate-100 w-screen h-28">Pokédex</h1>
+        <h1 className="text-8xl text-center bg-zinc-800 text-slate-100 w-screen h-24">Pokédex</h1>
         <div className="my-3">
-            <input className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
+            <input id="pokemon_search_box" className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
             <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
             {isError && <p className="text-red-500">{isError.toString()}, the pokemon may not exist?</p>}
-            </div>
+        </div>
             {data && <div>
                         {data.types  && 
                             <div className={setBodyStyle(data.types[0].type.name)} >
