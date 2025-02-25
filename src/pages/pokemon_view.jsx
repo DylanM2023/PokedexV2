@@ -7,20 +7,19 @@ const PokeView = () => {
     const [name, setName] = useState('')
     const {data, isPending, isError} = useFetch(index)
 
+    console.log(data)
+
     function fetchName (search) {
         if (search != ''){
             setIndex(search);
             document.getElementById("pokemon_search_box").value = ""
         }
     }
-
     // fetchName sets the index to the name the user searches for. It ignores blank values
 
     function nextPokemon (index) {
-
         const new_index = parseInt(index) + 1
         setIndex(new_index.toString())
-
     }
 
     function prevPokemon (index) {
@@ -110,7 +109,10 @@ const PokeView = () => {
 
     return ( 
     <div className="rounded-xl justify-items-center">
-        <h1 className="text-8xl text-center bg-zinc-800 text-slate-100 w-screen h-24">Pokédex</h1>
+        <div className="w-screen h-24 bg-neutral-900 text-center ">
+            {isPending && <h1 className="text-6xl text-slate-100 py-3">Loading...</h1>}
+            {isPending == false && <h1 className="text-6xl text-slate-100 py-3">Pokédex</h1>}
+        </div>
         <div className="my-3">
             <input id="pokemon_search_box" className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
             <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
@@ -132,11 +134,11 @@ const PokeView = () => {
                             </div>}
                         </div>
             }
-            <div className="flex gap-24">
-                <button className="border-2 w-40 h-20 m-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
-                <button className="border-2 w-40 h-20 m-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
+            <div className="flex gap-10">
+                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
+                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" >Random</button>
+                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
             </div>
-                {isPending && <p>Loading...</p>}
         </div>
     );
 }

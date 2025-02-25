@@ -11,7 +11,7 @@ export default {
         "dragon-type": "#6562a1"
       },
       backgroundImage:{
-        search_icon: "url('./assets/search_icon.jpg')"
+        search_icon: "url('./assets/search_icon.jpg')",
       }
     },
   },
