@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import PokeView from './pages/pokemon_view'
+import PageError from './pages/404_page'
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<PokeView/>} />
-        <Route path='*' element={<div>Page Not Found...</div>}/>
+        <Route path='*' element={<PageError/>}/>
       </Routes>
     </BrowserRouter>
   )

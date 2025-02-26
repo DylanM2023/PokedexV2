@@ -114,7 +114,7 @@ const PokeView = () => {
     <div className="rounded-xl justify-items-center">
         <div className="w-screen h-24 bg-neutral-900 text-center ">
             {isPending && <h1 className="text-6xl text-slate-100 py-3 font-body">Loading...</h1>}
-            {isPending == false && <h1 className="text-6xl text-slate-100 font-body fixed:center py-4">Pokédex</h1>}
+            {isPending == false && <h1 className="text-6xl text-slate-100 font-body py-4">Pokédex</h1>}
         </div>
         <div className="my-3">
             <input id="pokemon_search_box" className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
@@ -126,7 +126,7 @@ const PokeView = () => {
                                         <div className={setBodyStyle(data.types[0].type.name)} >
                                             <div className="flex">
                                                 <h1 className="flex flex-grow text-4xl m-5 font-body">{String(data.name).charAt(0).toUpperCase() + String(data.name).slice(1)}</h1>
-                                                <p className="border-2 border-black w-1/6 text-center text-2xl m-5 font-bold rounded-xl bg-white bg-opacity-25">{data.id}</p>
+                                                <p className="border-2 border-black w-1/6 text-center text-2xl m-5 max-h-10 font-bold rounded-xl bg-white bg-opacity-25">{data.id}</p>
                                             </div>
                                             <img src={data.sprites.other['official-artwork'].front_default} alt="Image Unavailable"/>
                                         {(data.types.map((array, id)=>(
@@ -143,7 +143,7 @@ const PokeView = () => {
                                             <p className="border-2 border-black w-1/6 text-center text-2xl m-5 font-bold rounded-xl bg-white bg-opacity-25">404</p>
                                         </div>
                                     </div>
-                                    <img className="bg-black" src={data.sprites.other['official-artwork'].front_default} alt="" />
+                                    <img className="bg-black" src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/137.png' alt="" />
                                     <p className="text-2xl text-center font-bold border-t-2 border-white font-body bg-black text-white">Pokémon was not found</p>
                                 </div>}
                             </div>
