@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/pokedexV2"
+  base: "https://github.com/DylanM2023/PokedexV2"
 })
