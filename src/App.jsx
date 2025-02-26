@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='pokdexV2/' element={<PokeView/>} />
+        <Route path='/' element={<PokeView/>} />
         <Route path='*' element={<PageError/>}/>
       </Routes>
     </BrowserRouter>
