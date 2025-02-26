@@ -69,7 +69,7 @@ const PokeView = () => {
     }
 
     function setTypeStyle(type) {
-        let styleCard = "text-2xl text-center font-bold border-t-2 border-black"
+        let styleCard = "text-2xl text-center font-bold border-t-2 border-black font-body"
         switch(type){
             case "fire":
                 return styleCard + ' bg-red-400';
@@ -113,29 +113,40 @@ const PokeView = () => {
     return ( 
     <div className="rounded-xl justify-items-center">
         <div className="w-screen h-24 bg-neutral-900 text-center ">
-            {isPending && <h1 className="text-6xl text-slate-100 py-3">Loading...</h1>}
-            {isPending == false && <h1 className="text-6xl text-slate-100 py-3">Pokédex</h1>}
+            {isPending && <h1 className="text-6xl text-slate-100 py-3 font-body">Loading...</h1>}
+            {isPending == false && <h1 className="text-6xl text-slate-100 font-body fixed:center py-4">Pokédex</h1>}
         </div>
         <div className="my-3">
             <input id="pokemon_search_box" className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
             <button className="bg-search_icon bg-center bg-cover w-5 h-5" onClick={()=>{{fetchName(name)}}}></button>
-            {isError && <p className="text-red-500">{isError.toString()}, the pokemon may not exist?</p>}
         </div>
             {data && <div>
-                        {data.types  && 
-                            <div className={setBodyStyle(data.types[0].type.name)} >
-                                <div className="flex">
-                                    <h1 className="flex flex-grow text-4xl m-5">{String(data.name).charAt(0).toUpperCase() + String(data.name).slice(1)}</h1>
-                                    <p className="border-2 border-black w-1/6 text-center text-2xl m-5 rounded-xl bg-white bg-opacity-25">{data.id}</p>
-                                </div>
-                                <img src={data.sprites.other['official-artwork'].front_default} alt="Image Unavailable"/>
-                                {(data.types.map((array, id)=>(
-                                    <div className={setTypeStyle(array.type.name)} key={id}>
-                                        {String(array.type.name).charAt(0).toUpperCase() + String(array.type.name).slice(1)}
+                        {isError == null && 
+                                    <div>{data.types  && 
+                                        <div className={setBodyStyle(data.types[0].type.name)} >
+                                            <div className="flex">
+                                                <h1 className="flex flex-grow text-4xl m-5 font-body">{String(data.name).charAt(0).toUpperCase() + String(data.name).slice(1)}</h1>
+                                                <p className="border-2 border-black w-1/6 text-center text-2xl m-5 font-bold rounded-xl bg-white bg-opacity-25">{data.id}</p>
+                                            </div>
+                                            <img src={data.sprites.other['official-artwork'].front_default} alt="Image Unavailable"/>
+                                        {(data.types.map((array, id)=>(
+                                            <div className={setTypeStyle(array.type.name)} key={id}>
+                                            {String(array.type.name).charAt(0).toUpperCase() + String(array.type.name).slice(1)}
+                                            </div>)))}
+                                        </div>}
+                                    </div>}
+                            {isError && 
+                                <div>
+                                    <div className="flex-col h-auto rounded-t-2xl border-2 border-black bg-black text-slate-50">
+                                        <div className="flex">
+                                            <h1 className="flex flex-grow text-4xl m-5 font-body">Error</h1>
+                                            <p className="border-2 border-black w-1/6 text-center text-2xl m-5 font-bold rounded-xl bg-white bg-opacity-25">404</p>
+                                        </div>
                                     </div>
-                                )))}
-                            </div>}
-                        </div>
+                                    <img className="bg-black" src={data.sprites.other['official-artwork'].front_default} alt="" />
+                                    <p className="text-2xl text-center font-bold border-t-2 border-white font-body bg-black text-white">Pokémon was not found</p>
+                                </div>}
+                            </div>
             }
             <div className="flex gap-10">
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>

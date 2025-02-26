@@ -12,6 +12,9 @@ export default {
       },
       backgroundImage:{
         search_icon: "url('./assets/search_icon.jpg')",
+      },
+      fontFamily:{
+        body: ["Poppins", 'sans-serif']
       }
     },
   },
