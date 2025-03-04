@@ -111,7 +111,7 @@ const PokeView = () => {
     // next/prevPokemon convert the current index into an integer and change the value by +/- 1 this changes the view to the next or previous pokemon 
 
     return ( 
-    <div className="rounded-xl justify-items-center">
+    <div className="rounded-xl justify-items-center overflow-hidden">
         <div className="w-screen h-24 bg-neutral-900 text-center ">
             {isPending && <h1 className="text-6xl text-slate-100 py-3 font-body">Loading...</h1>}
             {isPending == false && <h1 className="text-6xl text-slate-100 py-4 font-body">Pokédex</h1>}
