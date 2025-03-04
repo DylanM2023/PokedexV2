@@ -114,7 +114,7 @@ const PokeView = () => {
     <div className="rounded-xl justify-items-center">
         <div className="w-screen h-24 bg-neutral-900 text-center ">
             {isPending && <h1 className="text-6xl text-slate-100 py-3 font-body">Loading...</h1>}
-            {isPending == false && <h1 className="text-6xl text-slate-100 font-body py-4">Pokédex</h1>}
+            {isPending == false && <h1 className="text-6xl text-slate-100 py-4 font-body">Pokédex</h1>}
         </div>
         <div className="my-3">
             <input id="pokemon_search_box" className="border-2 border-black" type='text' placeholder="Search For Pokemon" onChange={(e) => {setName(e.target.value)}}/>
@@ -151,7 +151,7 @@ const PokeView = () => {
             <div className="flex gap-10">
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{fetchName(randomPokemon(1025))}}>Random</button>
-                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
+                <button className="phone:w-20 border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
             </div>
         </div>
     );
