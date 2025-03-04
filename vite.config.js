@@ -7,9 +7,10 @@ export default defineConfig({
   server: {
     allowedHosts : ["pokedexv2.onrender.com"],
   },
-  optimizeDeps:{
-    include: ['react/jsx-runtime']
-  },
-
+  resolve: {
+    alias: {
+        "react/jsx-runtime": "react/jsx-runtime.js"
+    }
+},
   plugins: [react()],
 })
