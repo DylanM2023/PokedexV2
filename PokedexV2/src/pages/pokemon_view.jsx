@@ -148,10 +148,10 @@ const PokeView = () => {
                                 </div>}
                             </div>
             }
-            <div className="flex gap-10">
+            <div className="flex gap-10 overflow-hidden">
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{prevPokemon(data.id)}}>Last</button>
                 <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{fetchName(randomPokemon(1025))}}>Random</button>
-                <button className="phone:w-20 border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl" onClick={()=>{nextPokemon(data.id)}}>Next</button>
+                <button className="border-2 w-32 h-20 my-5 border-black rounded-xl text-2xl " onClick={()=>{nextPokemon(data.id)}}>Next</button>
             </div>
         </div>
     );
