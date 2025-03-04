@@ -2,10 +2,21 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "ground-type": "#9d624d",
+        "dragon-type": "#6562a1"
+      },
+      backgroundImage:{
+        search_icon: "url('./assets/search_icon.jpg')",
+      },
+      fontFamily:{
+        body: ["Poppins", 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
