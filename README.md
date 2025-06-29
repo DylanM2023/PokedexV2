@@ -3,9 +3,7 @@
 
 # Frontend Setup
 
- cd frontend
- npm install
- npm run dev
+ cd frontend \n npm install \n npm run dev
 
 https://stackblitz.com/edit/vitejs-vite-nenwcw?devtoolsheight=33&file=src%2Fmain.jsx 
 
